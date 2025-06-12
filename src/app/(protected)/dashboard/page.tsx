@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
 
-import SignOutButton from "./components/sign-out-button";
+import SignOutButton from "./_components/sign-out-button";
 
 const DashboardPage = async () => {
   const session = await auth.api.getSession({
@@ -31,15 +31,6 @@ const DashboardPage = async () => {
       <h1>Dashboard</h1>
       <h1>Username: {session?.user?.name}</h1>
       <h1>E-mail: {session?.user?.email}</h1>
-      <h2>
-        Clínica:{" "}
-        {clinics.map((clinic, idx) => (
-          <span key={clinic.clinicId}>
-            {clinic.clinic.name}
-            {idx < clinics.length - 1 && ", "}
-          </span>
-        ))}
-      </h2>
       <SignOutButton />
     </div>
   );
